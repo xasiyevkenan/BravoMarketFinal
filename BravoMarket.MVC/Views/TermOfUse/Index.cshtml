@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "İstifadə şərtləri | Bravo Supermarket";
+
+    TermOfUseViewModel viewModel = Model;
+    var terms = viewModel.TermOfUse;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>İstifadə şərtləri</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text_wrapper">
+        <div class="all_text">
+            <div class="single_text">
+
+                @foreach (var term in terms)
+                {
+                    <h3>@term.TermTitle</h3>
+                    <p>@term.TermDescription </p>
+                }
+
+            </div>
+        </div>
+    </section>
+</main>
+

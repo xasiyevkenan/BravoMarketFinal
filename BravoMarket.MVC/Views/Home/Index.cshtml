@@ -1,0 +1,165 @@
+﻿@{
+    ViewData["Title"] = "Ana Səhifə | Bravo Supermarket";
+
+    HomeViewModel viewModel = Model;
+    var sliders = viewModel.IndexSliders;
+    var dots = viewModel.SliderDots;
+    var special = viewModel.Special;
+    var advantage = viewModel.Advantage;
+    var career = viewModel.Career;
+}
+
+<main>
+    <section class="slider_wrapper">
+
+        <div class="mini_img">
+            <div class="container">
+                <div class="mini_image">
+
+                    @foreach (var dot in dots)
+                    {
+                        <img class="dot_img " src="~/assets/images/@dot.ImageUrl" alt="">
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div id="slider" class="slider row">
+
+            @foreach (var slider in sliders)
+            {
+                <div class="singleslide col-lg-12"
+                 style="color: @slider.InnerColor; background: @slider.BackgroundColor">
+                    <div class="container">
+                        <div class="slide">
+                            <div class="about">
+                                <h2>@slider.Title</h2>
+                                <p>@slider.Description</p>
+                                <a asp-controller="special" asp-action="index" style="background-color: @slider.ButtonBg;">Daha ətraflı</a>
+                            </div>
+
+                            <div class="image">
+                                <span class="big_img" style="background-image: url(/assets/images/@slider.BigImageUrl);"></span>
+                                <img class="little_img" src="~/assets/images/@slider.LittleImageUrl" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
+
+    <section class="index_special">
+        <div class="container">
+            <div class="all_special">
+                <div class="uni_header">
+                    <div class="left_side">
+                        <h2>@special.HeaderTitle</h2>
+                        <p>@special.HeaderDescription</p>
+                    </div>
+                    <div class="link mt-3">
+                        <a href="">@special.ButtonInner</a>
+                    </div>
+                </div>
+                <div class="special_grid">
+
+                    @foreach (var offer in special.SpecialOffers)
+                    {
+                        <div class="single-special-box"
+                         style="background-image: url('/assets/images/@offer.ImageUrl');"
+                         onclick="window.location.href='/special/index';">
+                            <div class="sp_title">
+                                <h3 style="color: @offer.InnerColor;">@offer.Title</h3>
+                            </div>
+                            <div class="date">
+                                <span style="color: @offer.InnerColor;">@offer.Date</span>
+                            </div>
+                            <div class="ctlg_btn">
+                                <a style="color: @offer.ButtonBg;" class="select-trigger" href="">
+                                    @offer.ButtonInner
+                                </a>
+                                <div class="options">
+                                    @foreach (var market in special.MarketTypes)
+                                    {
+                                        <a style="color: @offer.ButtonBg;"
+                                   href="assets/pdf/@market.PdfUrl">@market.Name</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="mobile_link">
+                    <a href="/special/index">Bütün təkliflər</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="index_advantages">
+        <div class="container">
+            <div class="all_advantages">
+                <div class="uni_header">
+                    <div class="left_side">
+                        <h2>@advantage.HeaderTitle</h2>
+                        <p>@advantage.HeaderDescription</p>
+                    </div>
+                </div>
+                <div class="advantages_grid">
+
+                    @foreach (var indicator in advantage.İndicators)
+                    {
+                        <div class="single-advantage-box">
+                            <h3>@indicator.Count</h3>
+                            <div class="bottom_side d-flex justify-content-between">
+                                <div class="text">
+                                    <p>@indicator.Title</p>
+                                </div>
+                                <div class="icon">
+                                    <img src="assets/images/@indicator.IconUrl" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="advantages_three">
+
+                    @foreach (var three in advantage.AdvantagesThree)
+                    {
+                        <div class="single-advantage" onclick="window.location.href='@three.Link'">
+                            <div class="image">
+                                <img src="assets/images/@three.ImageUrl" alt="">
+                            </div>
+                            <h3>@three.Title</h3>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="become_index">
+        <div class="container">
+            <div class="career_box" style="background-image: url('assets/images/@career.BGImageUrl');">
+                <div class="image">
+                    <img src="~/assets/images/@career.FirstImageUrl" alt="">
+                </div>
+                <div class="image">
+                    <img src="~/assets/images/@career.SecondImageUrl" alt="">
+                </div>
+                <div class="inner">
+                    <h2>@Html.Raw(career.Title)</h2>
+                    <p>@career.Description</p>
+                    <div class="link">
+                        <a asp-controller="@career.LinkController">@career.ButtonInner</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

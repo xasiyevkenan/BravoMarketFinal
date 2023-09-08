@@ -1,0 +1,197 @@
+﻿@{
+    Layout = null;
+
+    OnlineMarketViewModel viewModel = Model;
+    var categories = viewModel.Categories;
+}
+
+<header class="onlinemarket_header">
+    <div class="second_container">
+        <div class="all_header">
+            <div class="top_header d-flex justify-content-between">
+                <div class="left_side d-flex">
+                    <div class="logo">
+                        <a asp-controller="OnlineMarket" asp-action="Index">
+                            <img src="~/assets/images/icons/logo.svg" alt="">
+                        </a>
+                    </div>
+
+                    <nav>
+                        <a href="#">Çatdırılma və ödəniş</a>
+                        <a href="#">Geri qaytarma şərtləri</a>
+                    </nav>
+                </div>
+
+                <div class="right_side">
+                    <div class="lang_select d-flex">
+                        <a class="active" href="#">AZ</a>
+                        <a href="#">EN</a>
+                        <a href="#">RU</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom_header d-flex">
+                <div class="catalog_menu_tab " id="catalog-menu-tab">
+                    <a href="#">
+                        <span>Məhsul Kataloqu</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+                </div>
+
+                <div class="search_title ">
+                    <form class="form_search" action="">
+                        <div class="all_form">
+                            <input type="text" placeholder="Məhsulun adını yazmağa başlayın, məsələn, «Banan»">
+                            <button type="submit"></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="icon_boxes d-flex">
+                    <div class="single_icon_box">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Account" asp-action="EditProfile" asp-route-profileId="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Profil</span>
+                            </a>
+                        }
+
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Daxil ol</span>
+                            </a>
+                        }
+
+                    </div>
+
+                    <div style="border-right: solid 2px #D6D5D4; margin: 0 15px;" class="single_icon_box">
+                        <a href="favourite.html">
+                            <i class="fa-regular fa-heart"><sup>0</sup></i>
+                        </a>
+                    </div>
+
+                    <div class="single_icon_box">
+                        <a href="">
+                            <i class="fa-solid fa-basket-shopping"><sup>0</sup></i>
+                        </a>
+
+                        <span class="total_price">₼ 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<header class="responsive_header">
+    <div class="second_container">
+        <div class="all_header">
+            <div class="left ">
+                <div class="hamburger_bar">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                </div>
+
+                <div class="search  " id="product_search">
+                    <a href="#"><i class="fa-solid fa-magnifying-glass search_icon black"></i></a>
+                </div>
+            </div>
+
+            <div class="middle">
+                <img src="~/assets/images/icons/logo.svg" alt="logo">
+            </div>
+
+            <div class="right d-flex justify-content-between align-items-center">
+                <div class="lang_select d-flex">
+                    <a class="active" href="">AZ</a>
+                    <a href="">EN</a>
+                    <a href="">RU</a>
+                </div>
+
+                <div class="like single_icon_box">
+                    <a href="favourite.html">
+                        <i class="fa-regular fa-heart"><sup>0</sup></i>
+                    </a>
+                </div>
+
+                <div class="basket single_icon_box">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"><sup>0</sup></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="search_input d-none">
+            <input type="text" placeholder="Məhsulun adını yazmağa başlayın, məsələn, «Banan»">
+        </div>
+    </div>
+</header>
+
+<div class="menu_bar">
+    <header>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Account" asp-action="Logout" asp-route-profileId="@User.FindFirstValue(ClaimTypes.NameIdentifier)"> Profil</a>
+        }
+
+        else
+        {
+            <a asp-controller="Account" asp-action="Register"> Qeydiyyat</a>
+            <a asp-controller="Account" asp-action="Login"> Daxil ol</a>
+        }
+    </header>
+
+    <div class="close_ctlg">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+
+    <div class="bar_catalogs">
+
+        @foreach (var category in categories.Where(category => category.IsMain))
+        {
+            <div class="single_bar_catalog height">
+                <a class="ctlg" href="#">@category.Name <i class="fa-solid fa-angle-up ctlg_icon"></i></a>
+
+                <div class="sub_category d-none">
+                    <a class="" href="onlinemarket.html"><span>Bütün kateqoriyaya baxın</span></a>
+                    @foreach (var subcategory in categories.Where(subcategory => subcategory.ParentCategoryId == category.Id))
+                    {
+                        <a href="#" class="text-black"><p>@subcategory.Name</p></a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<section class="catalogs" id="catalogs">
+    <div class="second_container">
+        <div class="all_catalogs" id="all_catalogs">
+            @foreach (var mainCategory in categories.Where(category => category.IsMain))
+            {
+                <div class="single_catalog d-flex">
+                    <div class="main_title">
+                        <a href="#">@mainCategory.Name</a>
+                    </div>
+
+                    <div class="sub_title">
+                        <ul style="list-style: none;">
+                            <li><a asp-controller="OnlineMarket" asp-action="Index">Bütün kateqoriyaya baxın</a></li>
+                            @foreach (var subcategory in categories.Where(subcategory => subcategory.ParentCategoryId == mainCategory.Id))
+                            {
+                                <li><a href="#">@subcategory.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,43 @@
+﻿@model VacancyCreateViewModel
+
+@{
+    ViewData["Title"] = "Vakansiya Yarat";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Vakansiya Yarat</h4>
+            <p class="card-description">Vakansiya Forması</p>
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label asp-for="Title">Başlıq</label>
+                    <input asp-for="Title" class="form-control" placeholder="Başlıq...">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Time">Vaxt</label>
+                    <input asp-for="Time" class="form-control" placeholder="Vaxt...">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Adress">Ünvan</label>
+                    <input asp-for="Adress" class="form-control" placeholder="Ünvan...">
+                    <span asp-validation-for="Adress" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SelectedVacancyTypeId">Vakansiya Növü</label>
+                    <select asp-for="SelectedVacancyTypeId" asp-items="@Model.VacancyTypeSelectList" class="form-control" name="SelectedVacancyTypeId">
+                        <option value="">Vakansiya növünü seçin!</option>
+                    </select>
+                    <span asp-validation-for="SelectedVacancyTypeId" class="text-danger"></span>
+                </div>
+
+                <button  type="submit" class="btn btn-primary mr-2 mt-4">Yarat</button>
+                <a  asp-action="Index" class="btn btn-light mt-4">Ləğv et</a>
+            </form>
+        </div>
+    </div>
+</div>

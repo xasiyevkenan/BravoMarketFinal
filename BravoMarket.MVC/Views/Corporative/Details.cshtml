@@ -1,0 +1,67 @@
+﻿@{
+    CorporativeViewModel viewModel = Model;
+    var corporativeClientService = viewModel.CorporativeClientService;
+    var commentTypes = viewModel.CommentTypes;
+
+    ViewData["Title"] = corporativeClientService.Title + " | Bravo Supermarket";
+}
+
+<main>
+
+    <section class="corporate_detail">
+        <div class="container">
+
+            <div style="background-color: #EFF3F5; background-image: url(/assets/images/@corporativeClientService.ImageUrl) ;"
+                 class="single_corporate_detail">
+                <h2>@corporativeClientService.Title</h2>
+
+                <p>@corporativeClientService.Description</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="customer_services">
+        <div class="all_services">
+            <div class="container">
+                <div class="contacts_form">
+                    <form action="">
+
+                        <div class="input_grid">
+                            <div class="single_input"><input type="text" placeholder="Tam ad*" required></div>
+
+                            <div class="single_input"><input type="text" placeholder="Email*" required></div>
+
+                            <div class="single_input">
+                                <input type="tel" id="telephone" value="" required
+                                       onchange="formatTelephone(this)" placeholder="Mobil nömrə*">
+                            </div>
+
+                            <div class="single_input">
+                                <select class="gray" name="selection" id="selection" required>
+                                    <option selected value="1">Müraciətin növunü seçin*</option>
+
+                                    @foreach (var type in commentTypes)
+                                    {
+                                        <option value="">@type.Name</option>
+                                    }
+                                 
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text_area">
+                            <textarea required placeholder="Müraciət barədə məlumat" class=""></textarea>
+                        </div>
+
+                        <div class="form_button">
+                            <button type="submit">
+                                <span>Göndər</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

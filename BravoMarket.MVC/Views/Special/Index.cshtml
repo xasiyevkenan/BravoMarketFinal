@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Xüsusi təkliflər | Bravo Supermarket";
+
+    SpecialViewModel viewModel = Model;
+    var special = viewModel.Special;
+    var offers = special.SpecialOffers;
+    var markettypes = special.MarketTypes;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@special.HeaderTitle</h2>
+                    <p>@special.HeaderDescription</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="index_special">
+        <div class="container">
+            <div class="all_special">
+                <div class="special_grid">
+
+                    @foreach (var offer in offers)
+                    {
+                        <div class="single-special-box" style="background-image: url('/assets/images/@offer.ImageUrl');" onclick="window.location.href='/special/index';">
+                            <div class="sp_title">
+                                <h3 style="color: @offer.InnerColor;">@offer.Title</h3>
+                            </div>
+
+                            <div class="date">
+                                <span style="color: @offer.InnerColor;">@offer.Date</span>
+                            </div>
+
+                            <div class="ctlg_btn">
+                                <a style="color: @offer.ButtonBg;" class="select-trigger" href="">@offer.ButtonInner</a>
+                                <div class="options">
+                                    @foreach (var market in markettypes)
+                                    {
+                                        <a style="color: @offer.ButtonBg;" href="assets/pdf/@market.PdfUrl">@market.Name</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

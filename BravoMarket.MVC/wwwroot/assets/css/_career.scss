@@ -1,0 +1,652 @@
+main {
+
+    .career_wrapper {
+        padding: 70px 0 100px;
+
+        .career_banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 330px;
+            background-color: #84B565;
+            background-image: url(/assets/images/career/career_bg.svg);
+            border-radius: 16px;
+            position: relative;
+
+            .banner_image {
+                position: absolute;
+                left: 50px;
+                bottom: 0;
+
+                img {
+                    border-radius: 16px;
+                }
+
+                &:nth-child(2) {
+                    left: auto;
+                    right: 50px;
+                }
+            }
+
+            .banner_inner {
+                width: 100%;
+                max-width: 660px;
+                text-align: center;
+
+                h2 {
+                    padding: 0 20px 40px;
+                    font-family: bold;
+                    font-size: 40px;
+                    line-height: 1.3;
+                    text-align: center;
+                    font-feature-settings: "liga" off;
+                    color: #fff;
+                }
+
+                p {
+                    padding: 0 20px;
+                   font-family: medium;
+                    font-size: 24px;
+                    line-height: 1.33;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .promise_wrapper {
+        padding: 0 0 100px;
+
+        h2 {
+            padding: 0 0 40px;
+            font-family: bold;
+            font-size: 40px;
+            line-height: 1.35;
+            color: #124F2E;
+            text-align: center;
+        }
+
+        .promise_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(min-content, max-content);
+            grid-gap: 24px 24px;
+
+            .single_promise {
+                padding: 30px;
+                border: 1px solid #EBEBEB;
+                box-shadow: 22px 38px 18px rgba(184, 184, 184, 0.01), 13px 21px 15px rgba(184, 184, 184, 0.02), 6px 9px 11px rgba(184, 184, 184, 0.03), 1px 2px 6px rgba(184, 184, 184, 0.04), 0px 0px 0px rgba(184, 184, 184, 0.04);
+                border-radius: 16px;
+
+                .icon {
+                    height: 92px;
+                    padding: 0px 35px
+                }
+
+                ul {
+                    list-style: none;
+
+                    li {
+                        padding: 0 0 0 20px;
+                        margin: 0 0 12px;
+                        font-family: medium;
+                        font-size: 18px;
+                        line-height: 1.44;
+                        color: #124F2E;
+                        position: relative;
+
+                        &:last-child {
+                            margin: 0;
+                        }
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            width: 6px;
+                            height: 6px;
+                            background-color: currentColor;
+                            position: absolute;
+                            left: 4px;
+                            top: 8px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    .vacancies_wrapper {
+        padding: 0 0 100px;
+
+        .vacancies_header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0 30px;
+
+            h2 {
+                font-family: bold;
+                font-size: 40px;
+                line-height: 1.35;
+                color: #124F2E;
+            }
+
+            .link {
+                a {
+                    display: inline-block;
+                    padding: 16px 32px;
+                    font-family: bold;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    text-align: center;
+                    color: #0B955E;
+                    text-decoration: none;
+                    box-shadow: inset 0 0 0 1px #0B955E;
+                    border-radius: 10px;
+                }
+            }
+        }
+
+        .vacancies_tabs {
+            padding: 0 0 24px;
+            font-size: 0;
+            overflow: auto;
+            white-space: nowrap;
+
+            ul {
+                padding: 0 !important;
+
+                li {
+                    display: inline-block;
+                    padding: 0 0 0 12px;
+
+                    &:first-child {
+                        padding: 0;
+                    }
+
+                    a {
+                        display: inline-block;
+                        padding: 14px 28px;
+                        font-family:semi-bold;
+                        font-size: 16px;
+                        line-height: 1.5;
+                        text-align: center;
+                        color: #124F2E;
+                        text-decoration: none;
+                        box-shadow: inset 0 0 0 1px #E7E7E7;
+                        border-radius: 6px;
+
+                        &.active {
+                            color: #fff;
+                            background-color: #77BC1F;
+                            box-shadow: inset 0 0 0 1px #77BC1F;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        .vacancies_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(min-content, max-content);
+            grid-gap: 24px 24px;
+
+            .single_vacancy {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 230px;
+                padding: 32px 40px;
+                background-color: #fff;
+                position: relative;
+                border-radius: 16px;
+                box-shadow: inset 0 0 0 1px #EBEBEB;
+                transition: 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+                &:hover {
+                    transform: translate(0, -2px);
+                    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+                }
+
+                h3 {
+                    padding: 0 0 20px;
+                    font-family: semi-bold;
+                    font-size: 20px;
+                    line-height: 1.4;
+                    color: #124F2E;
+                }
+
+                footer {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                p {
+                    padding: 0 0 0 28px;
+                    font-family: semi-bold;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: #A2A7AC;
+                    background-repeat: no-repeat;
+                    background-position: 0 50%;
+                    background-image: url(/assets/images/career/location_gray_icon.svg);
+                }
+
+                time {
+                    font-family: medium;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: #A2A7AC;
+                }
+            }
+        }
+    }
+
+    .employer_wrapper {
+        padding: 0 0 100px;
+
+        .employer_block {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            background: radial-gradient(100% 1975.01% at 1.01% 0%, #EDFFF4 0%, #C9F1D9 100%);
+            overflow: hidden;
+            border-radius: 16px;
+
+            .employer_inner {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 50%;
+                padding: 80px;
+                background-repeat: no-repeat;
+                background-position: 50%;
+                background-image: url(/assets/images/career/employer_bg.svg);
+                background-size: cover;
+
+                h2 {
+                    padding: 0 0 24px;
+                    font-family: bold;
+                    font-size: 40px;
+                    line-height: 1.35;
+                    color: #124F2E;
+                }
+
+                p {
+                    font-family: medium;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: #124F2E;
+                }
+            }
+
+            .employer_image {
+                width: 50%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+        }
+    }
+
+
+
+    .advantages_wrapper {
+        padding: 0 0 100px;
+
+        .advantages_block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .advantages_image {
+                width: 50%;
+                text-align: center;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            .advantages_inner {
+                width: 50%;
+                padding: 0 30px;
+
+                h3 {
+                    padding: 0 0 40px;
+                    font-family: semi-bold;
+                    font-size: 24px;
+                    line-height: 1.33;
+                    color: #124F2E;
+                }
+
+                ul {
+                    max-width: 360px;
+                    padding: 0 0 8px;
+                    font-family: medium;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: #124F2E;
+
+                    li {
+                        padding: 0 0 0 20px;
+                        margin: 0 0 8px;
+                        position: relative;
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            width: 4px;
+                            height: 4px;
+                            background-color: currentColor;
+                            position: absolute;
+                            left: 6px;
+                            top: 10px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:576px) {
+    .career_wrapper {
+        padding: 20px 0 40px !important;
+
+        .career_banner {
+            min-height: 240px !important;
+
+        }
+
+        .banner_image {
+            display: none !important;
+        }
+
+        h2 {
+            padding: 0 20px 20px !important;
+            font-size: 24px !important;
+        }
+
+        p {
+            font-size: 16px !important;
+        }
+
+    }
+
+    .promise_wrapper {
+        h2 {
+            padding: 0 0 24px !important;
+            font-size: 32px !important;
+        }
+
+
+        .promise_grid {
+            grid-template-columns: 1fr !important;
+
+            .single_promise {
+                padding: 24px !important;
+
+                .icon {
+                    height: 64px !important;
+
+                    img {
+                        width: 48px !important;
+                    }
+                }
+
+                li {
+                    font-size: 16px !important;
+                }
+            }
+        }
+    }
+
+
+    .vacancies_wrapper {
+        padding: 0 0 40px !important;
+
+        .vacancies_header {
+            display: block !important;
+
+            h2 {
+                padding: 0 0 12px !important;
+                font-size: 32px !important;
+            }
+
+            .link {
+
+                a {
+                    padding: 12px 20px !important;
+                    font-size: 14px !important;
+                }
+
+            }
+        }
+
+        .vacancies_grid {
+            grid-template-columns: 1fr !important;
+
+            .single_vacancy {
+                padding: 24px !important;
+                min-height: 160px !important;
+
+                h3 {
+                    font-size: 18px !important;
+                }
+
+                time {
+                    font-size: 14px !important;
+                }
+            }
+        }
+    }
+
+    .employer_wrapper {
+        padding: 0 0 40px !important;
+
+        .employer_block {
+            display: block !important;
+
+            .employer_inner {
+                width: 100% !important;
+                padding: 24px !important;
+
+                h2 {
+                    padding: 0 0 12px !important;
+                    font-size: 24px !important;
+                }
+
+                p {
+                    font-size: 14px !important;
+                }
+            }
+
+            .employer_image {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .advantages_wrapper {
+        padding: 0 0 40px !important;
+
+        .advantages_block {
+            display: block !important;
+
+            .advantages_inner {
+                width: 100% !important;
+                padding: 20px 0 0 !important;
+
+                h2 {
+                    padding: 0 0 12px !important;
+                    font-size: 24px !important;
+                }
+
+                p {
+                    font-size: 14px !important;
+                }
+            }
+
+            .advantages_image {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+@media (min-width:576px) and (max-width:1024px){
+
+    .career_wrapper {
+        padding: 20px 0 40px !important;
+
+        .career_banner {
+            min-height: 240px !important;
+
+        }
+
+        .banner_image {
+            display: none !important;
+        }
+
+        h2 {
+            padding: 0 30px 20px !important;
+            font-size: 24px !important;
+        }
+
+        p {
+            font-size: 16px !important;
+        }
+
+    }
+
+    .promise_wrapper {
+        h2 {
+            padding: 0 0 24px !important;
+            font-size: 32px !important;
+        }
+
+
+        .promise_grid {
+            grid-template-columns: 1fr !important;
+
+            .single_promise {
+                padding: 24px !important;
+
+                .icon {
+                    height: 64px !important;
+
+                    img {
+                        width: 48px !important;
+                    }
+                }
+
+                li {
+                    font-size: 16px !important;
+                }
+            }
+        }
+    }
+
+
+    .vacancies_wrapper {
+        padding: 0 0 40px !important;
+
+        .vacancies_header {
+            display: block !important;
+
+            h2 {
+                padding: 0 0 12px !important;
+                font-size: 32px !important;
+            }
+
+            .link {
+
+                a {
+                    padding: 12px 20px !important;
+                    font-size: 14px !important;
+                }
+
+            }
+        }
+
+        .vacancies_grid {
+            grid-template-columns: 1fr !important;
+
+            .single_vacancy {
+                padding: 24px !important;
+                min-height: 160px !important;
+
+                h3 {
+                    font-size: 18px !important;
+                }
+
+                time {
+                    font-size: 14px !important;
+                }
+            }
+        }
+    }
+
+    .employer_wrapper {
+        padding: 0 0 40px !important;
+
+        .employer_block {
+            display: block !important;
+
+            .employer_inner {
+                width: 100% !important;
+                padding: 24px !important;
+
+                h2 {
+                    padding: 0 0 12px !important;
+                    font-size: 24px !important;
+                }
+
+                p {
+                    font-size: 14px !important;
+                }
+            }
+
+            .employer_image {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .advantages_wrapper {
+        padding: 0 0 40px !important;
+
+        .advantages_block {
+            display: block !important;
+
+            .advantages_inner {
+                width: 100% !important;
+                padding: 20px 0 0 !important;
+
+                h2 {
+                    padding: 0 0 12px !important;
+                    font-size: 24px !important;
+                }
+
+                p {
+                    font-size: 14px !important;
+                }
+            }
+
+            .advantages_image {
+                width: 100% !important;
+            }
+        }
+    }
+}

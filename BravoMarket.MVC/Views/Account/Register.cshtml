@@ -1,0 +1,253 @@
+﻿@model RegisterViewModel;
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="icon" href="~/assets/images/icons/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Qeydiyyat</title>
+</head>
+
+<body>
+    @await Component.InvokeAsync("OnlineHeader")
+
+    <div class="registration-form">
+        <div class="second_container">
+            <div class="text text-danger text-dark-emphasis" asp-validation-summary="ModelOnly"></div>
+            <form method="post">
+                <table class="data-table registration-table">
+                    <thead>
+                        <tr>
+                            <td colspan="2"><b>Registration</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="register_form">
+                            <td class="register_form_label">Ad</td>
+                            <td><input asp-for="FirstName" class="auth-input" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span asp-validation-for="FirstName"></span></td>
+                        </tr>
+
+                        <tr class="register_form">
+                            <td class="register_form_label">Soyad</td>
+                            <td><input asp-for="LastName" class="auth-input" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span asp-validation-for="LastName"></span></td>
+                        </tr>
+
+                        <tr class="register_form">
+                            <td><span class="required">*</span>İstifadəçi adı (ən az 3 simvol)</td>
+                            <td>
+                                <input asp-for="UserName" class="auth-input" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span asp-validation-for="UserName"></span></td>
+                        </tr>
+
+                        <tr class="register_form">
+                            <td class="register_form_label"><span class="required">*</span>Şifrə</td>
+                            <td>
+                                <input asp-for="Password" type="password" class="auth-input" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span asp-validation-for="Password"></span></td>
+                        </tr>
+
+                        <tr class="register_form">
+                            <td class="register_form_label"><span class="required">*</span>Şifrınin təsdiqi</td>
+                            <td><input asp-for="ConfirmPassword" type="password" class="auth-input" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span asp-validation-for="ConfirmPassword"></span></td>
+                        </tr>
+
+                        <tr class="register_form">
+                            <td class="register_form_label"><span>*</span>E-Mail</td>
+                            <td>
+                                <input asp-for="Email" class="auth-input" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span asp-validation-for="Email"></span></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn btn-success mt-4">Sign Up</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+
+            <p>The password must contain at least 6 characters.</p>
+            <p><span class="required">*</span>Required fields</p>
+            <p>Already have an account? </p>
+            <p><a class="text-black text-decoration-none" asp-action="Login"><b>Log In</b></a></p>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="second_container">
+            <div class="wrapper-inner">
+                <div class="footer-content">
+                    <div class="footer-top">
+                        <div class="row">
+                            <div class="footer-item col-lg-3 col-12 footer-item-logo text-lg-left r">
+                                <a href="/" class="logo bottom-logo">
+                                    <img src="/assets/images/icons/logo.svg">
+                                </a>
+                                <div class="footer-phone row">
+                                    <div class="col-lg-12 col-sm-6">
+                                        <a href="tel:*2266" class="phone-link">*2266</a>&nbsp;
+                                        <p style="font-size: 12px; color: #313131; font-weight: bold; margin-top: 5px;">
+                                            Müştəri Xidmətləri 9:00-dan 20:00-a
+                                            qədər
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6">
+                                        <button type="button" class="feedback-btn mt-2"
+                                                data-target="#feedbackModal">
+                                            Əlaqə
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-item col-lg-5 col-12 footer-item-menu-list text-lg-left  my-lg-0 my-4 py-lg-0 py-3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="footer-item-menu mb-sm-0 mb-3">
+                                            <div class="footer-item-title">
+                                                Alıcılara
+                                            </div>
+                                            <div class="navigation-box">
+
+                                                <ul class="navigation">
+
+                                                    <li class="navigation_item">
+                                                        <a href=""
+                                                           class="navigation-link">FAQ</a>
+                                                    </li>
+
+                                                    <li class="navigation_item">
+                                                        <a href=""
+                                                           class="navigation-link">
+                                                            Malların sifarişi və satış qaydası
+                                                            haqqında razılaşma
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="footer-item-menu">
+                                            <div class="footer-item-title">
+                                                Məlumat<br>
+                                            </div>
+                                            <div class="navigation-box">
+
+                                                <ul class="navigation">
+
+                                                    <li class="navigation_item">
+                                                        <a href=""
+                                                           class="navigation-link">Çatdırılma və ödəniş</a>
+                                                    </li>
+
+                                                    <li class="navigation_item">
+                                                        <a href="" class="navigation-link">
+                                                            Geri
+                                                            qaytarma şərtləri
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-item col-lg-4 col-12 pl-lg-0 footer-item-text-wrapper text-lg-left ">
+                                <div class="footer-item-text">
+                                </div>
+                                <div class="footer-item-pays">
+                                    <div class="pays-box">
+                                        <div class="pay-item">
+                                            <img src="/assets/images/payments/mastercard.png"
+                                                 alt="Банковская карта MasterCard" title="">
+                                        </div>
+                                        <div class="pay-item">
+                                            <img src="/assets/images/payments/maestro.png"
+                                                 alt="Банковская карта Maestro" title="">
+                                        </div>
+                                        <div class="pay-item">
+                                            <img src="/assets/images/payments/visa.png" alt="Банковская карта Visa"
+                                                 title="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="bx-composite-banner" style=" margin-top: 10px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="footer-item-copy">
+                            <div class="row align-items-center text-lg-left text-center">
+                                <div class="col-lg col-12">
+
+                                    <span>2023 ©</span> <span><b>Azerbaijan Supermarket LLC</b></span>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="/assets/js/category.js"></script>
+    <script src="/assets/js/onlinemarket.js"></script>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,25 @@
+.text_wrapper {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+    .all_text {
+        margin-top: 25px;
+        .single_text {
+            h3 {
+                padding: 0 0 12px;
+                font-family: bold;
+                font-size: 20px;
+                line-height: 1.4;
+                font-feature-settings: "liga" off;
+                color: #124F2E;
+            }
+
+            p {
+                font-family: medium;
+                margin: 0 ;
+                padding: 0 0 12px;
+            }
+        }
+    }
+}

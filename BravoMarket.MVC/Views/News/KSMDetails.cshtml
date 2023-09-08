@@ -1,0 +1,58 @@
+﻿@{
+    NewsViewModel viewModel = Model;
+    var ksmActivities = viewModel.KSMActivities;
+    var ksmActivity = viewModel.KSMActivity;
+
+    ViewData["Title"] = @ksmActivity.Title + " | Bravo Supermarket";
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@ksmActivity.Title</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news_details_wrapper">
+        <div class="second_container">
+            <div class="news_details_image">
+                <img src="~/assets/images/@ksmActivity.ImageUrl" alt="">
+            </div>
+            <div class="news_details_text">
+                <p>@ksmActivity.Description</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <section class="all-news">
+        <div class="container">
+            <div class="news_wrapper">
+                <h3>Digər fəaliyyətlər</h3>
+                <p>Digər fəaliyyətlər ilə tanış olun!</p>
+                <div class="news_grid">
+
+                    @foreach (var ksmActivityy in ksmActivities)
+                    {
+                        <div class="single_new">
+                            <div class="image">
+                                <img src="~/assets/images/@ksmActivityy.ImageUrl" alt="">
+                            </div>
+                            <div class="inner">
+                                <h3>@ksmActivityy.Title</h3>
+
+                                <p>
+                                    @(ksmActivityy.Description.Length > 200 ? ksmActivityy.Description.Substring(0, 200) + "..." : ksmActivity.Description)
+                                </p>
+                            </div>
+                            <a asp-controller="news" asp-action="ksmDetails" asp-route-id="@ksmActivityy.Id" class="full_link"></a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>

@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Kartlar | Bravo Supermarket";
+
+    CardViewModel viewModel = Model;
+    var card = viewModel.Card;
+    var cardtypes = card.CardTypes;
+    var cardImages = card.CardImages;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@card.HeadTitle</h2>
+                    <p>@card.HeadDescription</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards">
+        <div class="container">
+            <div class="cards_wrapper">
+                <div class="cards_grid">
+
+                    @foreach (var cardtype in Model.CardTypes)
+                    {
+                        <div class="single_card @cardtype.BgColor overflow-hidden">
+                            @if (cardtype.IsSlider)
+                            {
+                                <div class="image s_slider">
+                                    @foreach (var image in cardImages.Where(image => image.CardTypeId == cardtype.Id))
+                                    {
+                                        <div class="single_owl_image">
+                                            <img src="~/assets/images/@image.ImageUrl" alt="">
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="image">
+                                    @foreach (var image in cardImages.Where(image => image.CardTypeId == cardtype.Id))
+                                    {
+                                        <img src="~/assets/images/@image.ImageUrl" alt="">
+                                    }
+                                </div>
+                            }
+
+                            <div class="inner">
+                                <h3>@cardtype.Type</h3>
+                                <p>@cardtype.Description</p>
+                                <div class="link">
+                                    <a href="">@cardtype.ButtonInner</a>
+                                </div>
+                            </div>
+
+                            @if (cardtype.IsSlider)
+                            {
+                                <div class="owl-dots">
+                                    @foreach (var dot in cardImages.Where(dot => dot.Dot != null))
+                                    {
+                                        <button class="owl-dot" role="button">@dot.Dot</button>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

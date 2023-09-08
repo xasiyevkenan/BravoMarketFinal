@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Vakansiyalar";
+
+    VacancyViewModel viewModel = Model;
+    var vacancies = viewModel.Vacancies;
+    var vacancyTypes = viewModel.VacancyTypes;
+}
+
+<h1>Vakansiyalar</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Bütün Vakansiyalar</h4>
+        <p class="card-description">
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Başlıq</th>
+                        <th>Vaxt</th>
+                        <th>Adres</th>
+                        <th>Tip</th>
+                        <th></th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var vacancy in vacancies)
+                    {
+                    <tr>
+                        <td>@vacancy.Title</td>
+                        <td>@vacancy.Time</td>
+                        <td>@vacancy.Adress</td>
+                        <td>@vacancy.VacancyType.Type</td>
+                        <td>
+                            <form asp-area="AdminPanel" asp-controller="Vacancy" asp-action="Delete" method="post" onsubmit="return confirm('Bu vakansiyanı silmək istədiyinizə əminsiniz?');">
+                                <input type="hidden" name="id" value="@vacancy.Id" />
+                                <button type="submit" class="btn btn-danger">Sil</button>
+                            </form>
+                        </td>
+                            <td><a asp-area="AdminPanel" asp-controller="Vacancy" asp-action="update" asp-route-id="@vacancy.Id" class="btn btn-outline-warning">Update</a></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

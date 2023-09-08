@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Əlaqə | Bravo Supermarket";
+
+    ContactViewModel viewModel = Model;
+    var contact = viewModel.Contact;
+    var comment = contact.Comment;
+    var commentTypes = comment.CommentTypes;
+    var clientFAQs = viewModel.ClientFAQs;
+    var protections = contact.ConsumerProtections;
+}
+
+<main>
+    <section class="contacts_wrapper">
+        <div class="container">
+            <div class="all_contacts">
+                <div class="contacts_sides">
+                    <div class="contacts_head">
+                        <h1>@contact.Title</h1>
+                    </div>
+                    <div class="contacts_info">
+                        <div class="single_info">
+                            <span>Ünvan:</span>
+                            <p>@contact.Adress</p>
+                        </div>
+                        <div class="single_info">
+                            <span>Çağrı Mərkəzi:</span>
+                            <p>@contact.Number</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts_map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.8393952264983!2d49.80652827653612!3d40.41240855590138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030870209a129a5%3A0xb61d74a865673e51!2sBravo!5e0!3m2!1sen!2saz!4v1691667340237!5m2!1sen!2saz"
+                            width="800" height="340" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="customer_services">
+        <div class="container">
+            <div class="all_services">
+                <header>
+                    <div class="left_side">
+                        <h2>@contact.ClientServiceHead</h2>
+                        <p>@contact.ClientServiceDescription</p>
+                    </div>
+                    <div class="right_side">
+                        <a class="tab active_tab" data-index="1" href="">Rəy bildirmək</a>
+                        <a class="tab" data-index="2" href="">FAQ</a>
+                        <a class="tab" data-index="3" href="">İstehsalçı hüquqlarının qorunması</a>
+                    </div>
+                </header>
+
+                <div class="contacts_form">
+                    <form action="">
+                        <div class="input_grid">
+                            <div class="single_input">
+                                <input type="text" placeholder="Tam ad*" required>
+                            </div>
+                            <div class="single_input">
+                                <input type="text" placeholder="Email*" required>
+                            </div>
+                            <div class="single_input">
+                                <input type="tel" id="telephone" value="" required
+                                       onchange="formatTelephone(this)" placeholder="Mobil nömrə*">
+                            </div>
+                            <div class="single_input">
+                                <select class="gray" name="selection" id="selection" required>
+                                    <option selected value="1">Müraciətin növunü seçin*</option>
+                                    @foreach (var commentType in commentTypes)
+                                    {
+                                        <option value="@commentType.Name">@commentType.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text_area">
+                            <textarea required placeholder="Müraciət barədə məlumat" class=""></textarea>
+                        </div>
+                        <div class="upload">
+                            <h2>@comment.UploadTitle</h2>
+                            <div class="upload_grid">
+                                @for (int i = 1; i <= 3; i++)
+                                {
+                                    <div class="single_upload">
+                                        <label for="uploadInput@i" class="uploadLabel">
+                                            <h3>Məhsul haqqında məlumat</h3>
+                                            <p>Format: .pdf .png .jpeg .jpg</p>
+                                            <p class="show_file" style="padding: 10px 0px;"></p>
+                                        </label>
+                                        <input required type="file" id="uploadInput@i" accept=".jpg, .png, .jpeg, .pdf">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form_button">
+                            <button type="submit">
+                                <span>Göndər</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq d-none">
+        <div class="container">
+            <div class="faq_list">
+                @foreach (var faq in clientFAQs)
+                {
+                    <div class="single_info">
+                        <h3>@faq.Title</h3>
+                        <div class="inset">
+                            <div class="faq_accordion">
+                                @foreach (var question in faq.Questions.Where(question => question.ClientFAQId == faq.Id))
+                                {
+                                    <div class="single_inf">
+                                        <h4><a class="info" href="">@question.Question</a></h4>
+                                        <div class="inner">
+                                            <div>
+                                                @foreach (var answer in question.Answers.Where(answer => answer.ClientFAQTitleId == question.Id))
+                                                {
+                                                    <p>@answer.Answer</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="protection d-none">
+        <div class="container">
+            <div class="text">
+                @foreach (var protectionTitle in protections)
+                {
+                    <h2>@protectionTitle.Title</h2>
+                    <ol>
+                        @foreach (var info in protectionTitle.ConsumerProtectionInfos.Where(info => info.ConsumerProtectionId == protectionTitle.Id))
+                        {
+                            <li>@info.Information</li>
+                        }
+                    </ol>
+                }
+            </div>
+        </div>
+    </section>
+</main>

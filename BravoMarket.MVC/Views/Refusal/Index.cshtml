@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "İmtina | Bravo Supermarket";
+
+    RefusalViewModel viewModel = Model;
+    var refusals = viewModel.Refusals;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>İmtina</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text_wrapper">
+        <div class="all_text">
+
+            @foreach (var refusal in refusals)
+            {
+                <div class="single_text">
+                    <h3>@refusal.Title</h3>
+
+                    @foreach (var info in refusal.RefusalInformations)
+                    {
+                        <p>@info.Information</p>
+                    }
+
+                </div>
+            }
+
+        </div>
+    </section>
+</main>

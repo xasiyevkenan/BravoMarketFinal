@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Korporativ | Bravo Supermarket";
+
+    CorporativeViewModel viewModel = Model;
+    var corporative = viewModel.Corporative;
+    var corporativeBanner = corporative.CorporativeBanner;
+    var corporativeClientServices = corporative.CorporativeClientServices;
+}
+
+<main>
+    <section class="corporative_banner">
+        <div class="banner">
+            <div class="single_banner" style="color: #fff; background: @corporativeBanner.BGColor">
+                <div class="all_banner">
+                    <div class="inner">
+                        <h2>@corporativeBanner.Title</h2>
+                        <p>@corporativeBanner.Description</p>
+                    </div>
+                    <div class="image">
+                        <img src="~/assets/images/@corporativeBanner.ImageUrl" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner_bottom" style="background-color: @corporativeBanner.BottomColor">
+            <p>@corporativeBanner.BottomTitle</p>
+        </div>
+    </section>
+
+    <section class="corporate_wrapper">
+        <div class="container">
+            <div class="corporate_title">
+                <h2>Bonus və Bravo kartların sifarişi</h2>
+                <p>Bravo bonus kartlarını əldə edib hədiyyə seçimi daha asan edə bilərsiz.</p>
+            </div>
+
+            <div class="corporate_grid">
+
+                @foreach (var service in corporativeClientServices)
+                {
+                    <div class="single_corporate" style="background-image: url(/assets/images/@service.ImageUrl)">
+                        <div class="inner">
+                            <h3> @service.Title</h3>
+                            <p>@service.Description</p>
+                        </div>
+                        <div class="link">
+                            <a asp-controller="Corporative" asp-action="Details" asp-route-id="@service.Id">@service.ButtonInner</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+
+</main>

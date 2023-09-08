@@ -1,0 +1,99 @@
+﻿@{
+    HeaderViewModel viewModel = Model;
+    var header = viewModel.Header;
+    var leftNavs = header.LeftNavigations;
+    var rightNavs = header.RightNavigations;
+}
+
+<header>
+    <div class="topheader">
+        <div class="container">
+            <div class="alltop d-flex justify-content-between">
+                <div class="lefttop">
+                    <i class="fa-solid fa-globe"></i>
+                    <select class="lang-sel" name="" id="">
+                        <option class="langs" value="0">Azərbaycan</option>
+                        <option class="langs" value="1">English</option>
+                    </select>
+                </div>
+                <div class="righttop">
+                    <a href="tel:*@header.Number"><i class="fa-solid fa-phone"></i>*@header.Number</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottomheader">
+        <div class="container">
+            <div class="allbottom d-flex justify-content-between">
+                <nav class="left_nav">
+                    <a class="logo" asp-controller="Home" asp-action="index"><img src="~/assets/images/@header.LogoUrl" alt=""></a>
+
+                    @foreach (var nav in leftNavs)
+                    {
+                        <a class="main_nav" asp-controller="@nav.Link" asp-action="Index">@nav.Name</a>
+                    }
+                </nav>
+
+                <nav class="right_nav">
+
+                    @foreach (var nav in rightNavs)
+                    {
+                        <a asp-controller="@nav.Link" asp-action="Index">
+                            <img src="~/assets/images/@nav.IconUrl" alt=""> @nav.Name
+                        </a>
+                    }
+
+                    <div class="responsive">
+                        <div class="lang_responsive ">
+                            <select class="lang-sel" name="" id="">
+                                <option selected disabled value="0"></option>
+                                <option class="langs" value="1">Azərbaycan</option>
+                                <option class="langs" value="2">English</option>
+                            </select>
+                        </div>
+
+                        <div class="responsive_bar">
+                            <span>
+                                <em></em>
+                                <em></em>
+                                <em></em>
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar_menu">
+        <div class="top  container   d-flex justify-content-between align-items-center">
+
+            @foreach (var nav in rightNavs)
+            {
+                <a asp-controller="@nav.Link" asp-action="Index">
+                    <img src="~/assets/images/@nav.IconUrl" alt="">
+                    <span>@nav.Name</span>
+                </a>
+            }
+
+        </div>
+
+        <div class="middle  container ">
+            <nav class="d-flex flex-column justify-content-between ">
+                @foreach (var nav in leftNavs)
+                {
+                    <a class="main_nav" asp-controller="@nav.Link" asp-action="Index">@nav.Name</a>
+                }
+            </nav>
+        </div>
+
+        <div class="bottom  container ">
+            <i class="fa-solid fa-globe"></i>
+            <select class="lang-sel" name="" id="">
+                <option class="langs" value="0">Azərbaycan</option>
+                <option class="langs" value="1">English</option>
+            </select>
+        </div>
+    </div>
+</header>

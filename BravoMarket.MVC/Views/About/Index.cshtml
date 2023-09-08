@@ -1,0 +1,128 @@
+﻿@{
+    ViewData["Title"] = "Haqqımızda | Bravo Supermarket";
+
+    AboutViewModel viewModel = Model;
+    var about = viewModel.About;
+    var standart = viewModel.Standart;
+    var standartsThree = standart.StandartsThree;
+    var visions = about.Visions;
+    var values = about.Values;
+    var corporativeValues = about.CorporativeValues;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@about.HeadTitle</h2>
+                    <p>@about.HeadDescription</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision_wrapper">
+        <div class="container">
+            <div class="vision_sides">
+
+                @foreach (var vision in visions)
+                {
+                    <div class="single_vision" style="background-image: url(/assets/images/@vision.ImageUrl);">
+                        <h3>@vision.Title</h3>
+                        <p>@vision.Description</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+
+    <div class="values_header">
+        <div class="container">
+            <h2>@about.ValueTitle</h2>
+            <p>@about.ValueDescription</p>
+        </div>
+    </div>
+
+    <section class="values_lines">
+        <div class="single_marque">
+            <ul>
+
+                @foreach (var value in values)
+                {
+                    <li><span>@value.Name</span></li>
+                }
+
+            </ul>
+        </div>
+    </section>
+
+    <section class="banner_wrapper">
+        <div class="container">
+            <div class="one_banner">
+                <div class="image">
+                    <img src="assets/images/@about.FirstBannerImageUrl" alt="">
+                </div>
+                <div class="image">
+                    <img src="assets/images/@about.LastBannerImageUrl" alt="">
+                </div>
+                <h2>@about.BannerTitle</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="standards_wrapper">
+        <div class="container">
+            <div class="standart_block">
+                <h2>@standart.Title</h2>
+                <div class="image">
+                    <img src="assets/images/@standart.ImageUrl" alt="">
+                </div>
+                <div class="standarts_three">
+
+                    @foreach (var advantage in standartsThree)
+                    {
+                        <div class="single_standart">
+                            <h3>@advantage.StandartHeader</h3>
+                            <ul>
+                                <li>@advantage.FirstStandart</li>
+                                @if (advantage.SecondStandart != null)
+                                {
+                                    <li>@advantage.SecondStandart</li>
+                                }
+                                @if (advantage.ThirdStandart != null)
+                                {
+                                    <li>@advantage.ThirdStandart</li>
+                                }
+                                @if (advantage.FourthStandart != null)
+                                {
+                                    <li>@advantage.FourthStandart</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="corporate_block">
+                <h2>Korporativ dəyərlərimiz</h2>
+                <div class="value_grid">
+
+                    @foreach (var corporativeValue in corporativeValues)
+                    {
+                        <div class="single_value">
+                            <div class="icon">
+                                <img src="assets/images/@corporativeValue.IconUrl" alt="">
+                            </div>
+                            <h3>@corporativeValue.Title</h3>
+                            <p>@corporativeValue.Description</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

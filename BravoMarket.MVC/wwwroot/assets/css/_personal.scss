@@ -1,0 +1,129 @@
+main.personal {
+    min-height: calc(100vh - 300px);
+    header {
+        &.banner_header {
+            h2 {
+                font-size: 36px;
+                font-family: extra-bold;
+            }
+        }
+    }
+
+    .info_boxes {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 30px 0;
+
+        .single_info_box {
+            background-color: #81bc3d;
+            text-align: center;
+            width: 22%;
+            padding: 20px 40px;
+            margin-right: 15px;
+            
+
+            .all_info{
+                width: 100%;
+                height: 100%;
+                position: relative;
+
+                .icon {
+                    font-size: 60px;
+                    color: white;
+                    padding: 0 10px;
+                    padding: 20px 0;
+                }
+    
+                .title {
+    
+                    span {
+                        font-size: 18px;
+                        font-family: bold;
+                        color: #fff;
+                    }
+                }
+            }
+
+            &:hover{
+                background-color: #5d941f;
+            }
+
+           
+        }
+    }
+}.text-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .small {
+    font-size: 12px;
+  }
+  
+  .second-container {
+    padding: 20px;
+  }
+  
+  .personal-information {
+    max-width: 500px;
+    min-height: calc(100vh );
+  }
+  
+  .form-widget {
+    margin-bottom: 20px;
+  }
+  
+  .form-widget-label {
+    font-weight: bold;
+  }
+  
+  .form-widget-input {
+    position: relative;
+  
+    input[type="text"],
+    input[type="password"] {
+      padding-right: 30px;
+    }
+  
+    .calendar-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+  
+
+  .tabs_gender {
+    list-style: none;
+    padding: 0;
+  
+    .tabs-item {
+      display: inline-block;
+      margin-right: 20px;
+  
+      input[type="radio"] {
+        display: none;
+      }
+  
+      .tabs-item-btn {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+  
+        &:hover {
+          background-color: #e0e0e0;
+        }
+  
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+  }

@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Karyera | Bravo Supermarket";
+
+    CareerViewModel viewModel = Model;
+    var career = viewModel.Career;
+    var careerBanner = career.CareerBanner;
+    var preference = career.Preference;
+    var employer = career.Employer;
+    var preferenceParagraphs = preference.Paragraphs;
+    var promises = career.Promises;
+    var vacancies = career.Vacancies;
+    var vacancyTypes = viewModel.VacancyTypes;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@career.HeadTitle</h2>
+                    <p>@career.HeadDescription</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="career_wrapper">
+        <div class="container">
+            <div class="career_banner">
+                <div class="banner_image">
+                    <img src="assets/images/@careerBanner.ImageUrl" alt="">
+                </div>
+                <div class="banner_inner">
+                    <h2>@careerBanner.QuestionTitle</h2>
+                    <p>@careerBanner.QuestionAnswer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="promise_wrapper">
+        <div class="container">
+            <h2>@career.PromiseTitle</h2>
+            <div class="promise_grid">
+
+                @foreach (var promise in promises)
+                {
+                    <div class="single_promise">
+                        <div class="icon">
+                            <img src="assets/images/@promise.IconUrl" alt="Icon 1">
+                        </div>
+                        <ul>
+                            <li>@promise.FirstPromise</li>
+                            <li>@promise.SecondPromise</li>
+                            <li>@promise.ThirdPromise</li>
+                        </ul>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+
+    <section class="vacancies_wrapper">
+        <div class="container">
+            <header class="vacancies_header">
+                <h2>Vakansiyalar</h2>
+                <div class="link">
+                    <a asp-controller="vacancy" asp-action="index">Bütün vakansiyalar</a>
+                </div>
+            </header>
+            <div class="vacancies_tabs">
+                <ul>
+                    @foreach (var vacancyType in vacancyTypes)
+                    {
+                        <li><a class="vacancies_tab" href="#">@vacancyType.Type</a></li>
+                    }
+                </ul>
+            </div>
+
+            <div class="vacancies">
+                <div class="vacancies_grid">
+
+                    @foreach (var vacancy in vacancies.Where(vacancy => vacancy.VacancyTypeId == 1))
+                    {
+                        <div class="single_vacancy">
+                            <h3>@vacancy.Title</h3>
+                            <footer>
+                                <p>@vacancy.Adress</p>
+                                <time>@vacancy.Time</time>
+                            </footer>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="vacancies d-none">
+                <div class="vacancies_grid">
+
+                    @foreach (var vacancy in vacancies.Where(vacancy => vacancy.VacancyTypeId == 2))
+                    {
+                        <div class="single_vacancy">
+                            <h3>@vacancy.Title</h3>
+                            <footer>
+                                <p>@vacancy.Adress</p>
+                                <time>@vacancy.Time</time>
+                            </footer>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="vacancies d-none">
+                <div class="vacancies_grid">
+
+                    @foreach (var vacancy in vacancies.Where(vacancy => vacancy.VacancyTypeId == 3))
+                    {
+                        <div class="single_vacancy">
+                            <h3>@vacancy.Title</h3>
+                            <footer>
+                                <p>@vacancy.Adress</p>
+                                <time>@vacancy.Time</time>
+                            </footer>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="employer_wrapper">
+        <div class="container">
+            <div class="employer_block">
+                <div class="employer_inner">
+                    <h2>@employer.Title</h2>
+                    <p> @employer.Description</p>
+                </div>
+                <div class="employer_image">
+                    <img src="/assets/images/@employer.ImageUrl" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages_wrapper">
+        <div class="container">
+            <div class="advantages_block">
+                <div class="advantages_image">
+                    <img src="assets/images/@preference.ImageUrl" alt="">
+                </div>
+                <div class="advantages_inner">
+                    <h3> @preference.Title</h3>
+                    <ul>
+
+                        @foreach (var paragraph in preferenceParagraphs)
+                        {
+                            <li>@paragraph.Inner</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

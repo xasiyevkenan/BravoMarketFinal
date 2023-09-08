@@ -1,0 +1,114 @@
+﻿@{
+    FooterViewModel viewModel = Model;
+    var footer = viewModel.Footer;
+    var companies = footer.Companies;
+    var laws = footer.Laws;
+    var others = footer.Others;
+    var footerAbouts = footer.FooterAbout;
+    var socialMedias = footer.SocialMedias;
+}
+
+<footer class="mt-5">
+    <div class="container">
+
+        <div class="logo ">
+            <img src="assets/images/@footer.LogoUrl" alt="">
+        </div>
+
+        <div class="top_footer d-flex justify-content-between">
+            <div class="footer_sections d-flex justify-content-between ">
+                <div class="footer_section">
+                    <h4>Şirkət</h4>
+
+                    <div class="subset">
+
+                        @foreach (var company in companies)
+                        {
+                            <a asp-controller="@company.Link" asp-action="index">@company.Name</a>
+                        }
+
+                    </div>
+                </div>
+
+                <div class="footer_section">
+                    <h4> </h4>
+                    <br/>
+
+                    <div class="subset">
+                    @foreach (var footerAbout in footerAbouts)
+                    {
+                                <a asp-controller="@footerAbout.Link" asp-action="index">@footerAbout.Name</a>
+                    }
+                    </div>
+
+                </div>
+
+                <div class="footer_section">
+                    <h4>Digər</h4>
+
+                    <div class="subset">
+                    @foreach (var other in others)
+                    {
+                        <a asp-controller="@other.Link" asp-action="index">@other.Name</a>
+                    }
+                    </div>
+
+                </div>
+
+                <div class="footer_section">
+                    <h4>Hüquq</h4>
+
+                    <div class="subset">
+                    @foreach (var law in laws)
+                    {
+                                <a asp-controller="@law.Link" asp-action="index">@law.Name</a>
+                    }
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="for_email">
+                <h2>Yeniliklərə abunə olun</h2>
+
+                <div class="subscribe_form">
+                    <form action="">
+                        <input type="email" placeholder="E-mail daxil edin">
+                        <button type="submit">Göndər</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom_footer d-flex justify-content-between align-items-center">
+
+            <div class="copywrite">
+                <p>@footer.CopyWrite</p>
+            </div>
+
+            <div class="creator">
+                <span>@Html.Raw(footer.Creator)</span>
+            </div>
+
+            <div class="languages">
+                <i class="fa-solid fa-globe"></i>
+                <select class="lang-sel" name="" id="">
+                    <option disabled selected class="langs" value="0"></option>
+                    <option selected class="langs" value="1">Azərbaycan</option>
+                    <option class="langs" value="2">English</option>
+                </select>
+            </div>
+
+            <div class="social_media_icons d-flex justify-content-between align-items-center">
+
+                @foreach (var icon in socialMedias)
+                {
+                    <a target="_blank" href="@icon.LinkUrl">
+                        <i class="@icon.ClassName"></i>
+                    </a>
+                }
+
+            </div>
+        </div>
+    </div>
+</footer>

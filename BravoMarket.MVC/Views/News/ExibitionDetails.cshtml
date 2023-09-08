@@ -1,0 +1,58 @@
+﻿@{
+    NewsViewModel viewModel = Model;
+    var exibitions = viewModel.Exibitions;
+    var exibition = viewModel.Exibition;
+
+    ViewData["Title"] = @exibition.Title + " | Bravo Supermarket";
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@exibition.Title</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news_details_wrapper">
+        <div class="second_container">
+            <div class="news_details_image">
+                <img src="~/assets/images/@exibition.ImageUrl" alt="">
+            </div>
+            <div class="news_details_text">
+                <p>@exibition.Description</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section class="all-news">
+    <div class="container">
+        <div class="news_wrapper">
+            <h3>Digər fəaliyyətlər</h3>
+            <p>Digər fəaliyyətlər ilə tanış olun!</p>
+            <div class="news_grid">
+
+                @foreach (var exibitionn in exibitions)
+                {
+                    <div class="single_new">
+                        <div class="image">
+                            <img src="~/assets/images/@exibitionn.ImageUrl" alt="">
+                        </div>
+                        <div class="inner">
+                            <h3>@exibitionn.Title</h3>
+
+                            <p>
+                                @(exibitionn.Description.Length > 200 ? exibitionn.Description.Substring(0, 200) + "..." : exibitionn.Description)
+                            </p>
+                        </div>
+                        <a asp-controller="news" asp-action="ExibitionDetails" asp-route-id="@exibitionn.Id" class="full_link"></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

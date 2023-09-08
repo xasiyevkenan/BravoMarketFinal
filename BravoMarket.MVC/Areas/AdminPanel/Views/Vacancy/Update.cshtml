@@ -1,0 +1,42 @@
+﻿@model VacancyCreateViewModel;
+
+
+@{
+    ViewData["Title"] = "Vakansiyanı Redaktə Et";
+}
+
+
+<h1>Vakansiyanı Redaktə Et</h1>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Title">Başlıq</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedVacancyTypeId">Vakansiya Növü</label>
+        <select asp-for="SelectedVacancyTypeId" asp-items="@(new SelectList(Model.VacancyTypeSelectList, "Value", "Text"))" class="form-control"></select>
+        <span asp-validation-for="SelectedVacancyTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Adress">Ünvan</label>
+        <input asp-for="Adress" class="form-control" />
+        <span asp-validation-for="Adress" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Time">Vaxt</label>
+        <input asp-for="Time" type="text" class="form-control" />
+        <span asp-validation-for="Time" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Yenilə</button>
+        <a asp-action="Index" class="btn btn-secondary">İmtina Et</a>
+    </div>
+</form>

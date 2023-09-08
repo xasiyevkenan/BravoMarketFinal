@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Marketlərimiz | Bravo Supermarket";
+
+    MarketViewModel viewModel = Model;
+    var markets = viewModel.Markets;
+    var marketTypes = viewModel.MarketTypes;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>Marketlərimiz</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="markets_wrapper">
+        <div class="container">
+            <div class="markets">
+                <div class="search_input">
+                    <input type="text" placeholder="Axtarış et">
+                </div>
+
+                <div class="market_types">
+                    <ul>
+                        <li><a class="active" href="">Hamısı</a></li>
+
+                        @foreach (var marketType in marketTypes)
+                        {
+                            <li><a class="@marketType.TagName" href="#">@marketType.Name</a></li>
+
+                        }
+                    </ul>
+                </div>
+
+                <div class="market_list">
+
+                    @foreach (var market in markets)
+                    {
+                        <div class="single_market">
+                            <header>
+                                <h3>@market.Name</h3>
+                            </header>
+
+                            <div class="about">
+                                <ul>
+
+                                    @foreach (var marketType in marketTypes.Where(marketType => marketType.Id == market.MarketTypeId))
+                                    {
+                                        <li class="location"><span>@marketType.Type</span> </li>
+                                    }
+
+                                    <li class="number"><span>@market.Number</span> </li>
+                                    <li class="location"> <span>@market.Adress</span></li>
+                                    <li class="time"> <span>@market.Time</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="map_link">
+                                <a href="@market.MapLinkUrl" target="_blank">Yol tarifi</a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.5777724549225!2d49.911071376536235!3d40.41820355554878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307dedba95cdaf%3A0xf8f8ebd6b8b184bd!2sBravo!5e0!3m2!1sen!2saz!4v1691851302701!5m2!1sen!2saz" style="border:0;" allowfullscreen="" loading="spee" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+</main>

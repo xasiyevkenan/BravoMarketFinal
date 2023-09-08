@@ -1,0 +1,46 @@
+.news_details_wrapper {
+    padding: 40px 0 20px;
+
+    .news_details_image {
+        width: 45%;
+        padding: 0 0 32px 20px;
+        font-size: 0;
+        float: right;
+
+        img {
+            width: 100%;
+            border-radius: 16px;
+        }
+    }
+
+    .news_details_text {
+        padding: 0 0 40px;
+        font-family: medium;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #124F2E;
+
+        p {
+            padding: 0 0 12px;
+        }
+
+        h2 {
+            padding: 0 0 12px;
+            font-family: bold;
+            font-size: 24px;
+            line-height: 1.4;
+            font-feature-settings: "liga" off;
+            color: #124F2E;
+        }
+
+        h3 {
+            padding: 0 0 12px;
+            font-family: bold;
+
+            font-size: 20px;
+            line-height: 1.4;
+            font-feature-settings: "liga" off;
+            color: #124F2E;
+        }
+    }
+}
