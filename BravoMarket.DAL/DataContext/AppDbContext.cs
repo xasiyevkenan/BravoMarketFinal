@@ -66,5 +66,7 @@ namespace BravoMarket.DAL.DataContext
         public DbSet<FooterAbout> FooterAbouts { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<CategoryProduct> CategoryProducts { get; set; }
     }
 }

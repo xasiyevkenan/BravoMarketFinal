@@ -7,29 +7,29 @@ namespace BravoMarket.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly AppDbContext _dbcontext;
+        private readonly AppDbContext _dbContext;
 
-        public HomeController(AppDbContext appdbContext)
+        public HomeController(AppDbContext dbContext)
         {
-            _dbcontext = appdbContext;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            var special = _dbcontext.Special
+            var special = _dbContext.Special
                 .Include(special => special.SpecialOffers)
                 .Take(2)
                 .Include(special => special.MarketTypes)
                 .FirstOrDefault();
 
-            var advantage = _dbcontext.Advantages
+            var advantage = _dbContext.Advantages
                 .Include(advantage => advantage.İndicators)
                 .Include(advantage => advantage.AdvantagesThree)
                 .FirstOrDefault();
 
-            var sliders = _dbcontext.IndexSliders.ToList();
-            var dots = _dbcontext.SliderDots.ToList();
-            var career = _dbcontext.Career.FirstOrDefault();
+            var sliders = _dbContext.IndexSliders.ToList();
+            var dots = _dbContext.SliderDots.ToList();
+            var career = _dbContext.Career.FirstOrDefault();
 
             var viewModel = new HomeViewModel
             {

@@ -1,0 +1,33 @@
+﻿@model ExibitionUpdateViewModel
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Xəbərləri Redaktə Et</h4>
+            <p class="card-description">
+                KSM xəbərləri
+            </p>
+            <form class="forms-sample" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label asp-for="Title">Başlıq</label>
+                    <input asp-for="Title" class="form-control" id="exampleInputUsername1" placeholder="Başlıq...">
+                    <span asp-validation-for="Title"></span>
+                </div>
+
+                <div class="form-group" enctype="multipart/form-data">
+                    <label asp-for="Image">Şəkil</label>
+                    <input asp-for="Image" type="file" class="form-control" id="exampleInputUsername1" accept="image/*" placeholder="Şəkil...">
+                    <span asp-validation-for="Image"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description">Təsvir</label>
+                    <input asp-for="Description" class="form-control" id="exampleInputEmail1" placeholder="Təsvir...">
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2 mt-4">Yenilə</button>
+                <button asp-action="index" class="btn btn-light mt-4">Ləğv Et</button>
+            </form>
+        </div>
+    </div>
+</div>

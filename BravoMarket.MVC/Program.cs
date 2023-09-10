@@ -17,7 +17,7 @@ public class Program
         builder.Configuration.AddJsonFile("appsettings.json");
         var configuration = builder.Configuration;
 
-        Constants.ImagePath = Path.Combine(builder.Environment.WebRootPath, "img");
+        Constants.ImagePath = Path.Combine(builder.Environment.WebRootPath,"assets", "images");
 
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 

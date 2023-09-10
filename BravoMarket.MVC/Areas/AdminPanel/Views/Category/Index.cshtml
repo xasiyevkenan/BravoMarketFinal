@@ -1,0 +1,56 @@
+﻿@model CategoryViewModel
+
+<h1>Məhsullar</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Bütun Məhsullar</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Şəkil</th>
+                        <th>Ad</th>
+                        <th>Məhsullar</th>
+                        <th></th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <tr>
+                            @if(@category.ImageUrl != null){
+                                <td><img width="130" height="130" style="border-radius: 50%;" src="~/assets/images/@category.ImageUrl"></td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
+                            <td>@category.Name</td>
+                            <td>
+                                @foreach (var product in category.CategoryProducts)
+                                {
+                                    @product.Product.Name
+                                    @if (!category.Equals(@product.Product.Name.Last()))
+                                    {
+                                        <br />
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@category.Id" />
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                            <td><a asp-action="Update" asp-route-id="@category.Id" class="btn btn-outline-warning">Update</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

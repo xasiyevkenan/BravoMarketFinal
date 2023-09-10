@@ -1,0 +1,50 @@
+﻿@model CategoryUpdateViewModel
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Məhsulu Düzəlt</h4>
+            <p class="card-description">Məhsullar</p>
+            <form asp-action="Update" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name">Adı</label>
+                    <input asp-for="Name" class="form-control" placeholder="Adı..." />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AddedProductIds">Əlavə Kateqoriyalar</label>
+                    <select style="height:80px;" asp-for="AddedProductIds" class="form-control" multiple>
+                        @foreach (var category in Model.AvailableProducts)
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AddedProductIds" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RemovedProductIds">Silmək İstədiyiniz Kateqoriyalar</label>
+                    <select style="height:80px;" asp-for="RemovedProductIds" class="form-control" multiple>
+                        @foreach (var category in Model.RemovedProducts)
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="RemovedProductIds" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3" enctype="multipart/form-data">
+                    <label asp-for="Image">Şəkil</label>
+                    <input asp-for="Image" class="form-control" id="exampleInputUsername1" accept="image/*" placeholder="Şəkil...">
+                    <span asp-validation-for="Image"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mr-2 mt-4">Yenilə</button>
+                    <a asp-action="Index" class="btn btn-light mt-4">Ləğv Et</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

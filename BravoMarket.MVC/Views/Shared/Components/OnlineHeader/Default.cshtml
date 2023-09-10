@@ -39,10 +39,10 @@
                     </a>
                 </div>
 
-                <div class="search_title ">
+                <div class="search_title">
                     <form class="form_search" action="">
                         <div class="all_form">
-                            <input type="text" placeholder="Məhsulun adını yazmağa başlayın, məsələn, «Banan»">
+                            <input id="searchedProducts" type="text" placeholder="Məhsulun adını yazmağa başlayın, məsələn, «Banan»">
                             <button type="submit"></button>
                         </div>
                     </form>
@@ -155,13 +155,13 @@
         @foreach (var category in categories.Where(category => category.IsMain))
         {
             <div class="single_bar_catalog height">
-                <a class="ctlg" href="#">@category.Name <i class="fa-solid fa-angle-up ctlg_icon"></i></a>
+                <a class="ctlg" asp-controller="OnlineMarket" asp-action="products" asp-route-id="@category.Id">@category.Name <i class="fa-solid fa-angle-up ctlg_icon"></i></a>
 
                 <div class="sub_category d-none">
                     <a class="" href="onlinemarket.html"><span>Bütün kateqoriyaya baxın</span></a>
                     @foreach (var subcategory in categories.Where(subcategory => subcategory.ParentCategoryId == category.Id))
                     {
-                        <a href="#" class="text-black"><p>@subcategory.Name</p></a>
+                        <a asp-controller="OnlineMarket" asp-action="products" asp-route-id="@subcategory.Id" class="text-black"><p>@subcategory.Name</p></a>
                     }
                 </div>
             </div>
@@ -176,7 +176,7 @@
             {
                 <div class="single_catalog d-flex">
                     <div class="main_title">
-                        <a href="#">@mainCategory.Name</a>
+                        <a asp-controller="OnlineMarket" asp-action="products" asp-route-id="@mainCategory.Id">@mainCategory.Name</a>
                     </div>
 
                     <div class="sub_title">
@@ -184,7 +184,7 @@
                             <li><a asp-controller="OnlineMarket" asp-action="Index">Bütün kateqoriyaya baxın</a></li>
                             @foreach (var subcategory in categories.Where(subcategory => subcategory.ParentCategoryId == mainCategory.Id))
                             {
-                                <li><a href="#">@subcategory.Name</a></li>
+                                <li><a asp-controller="OnlineMarket" asp-action="products" asp-route-id="@subcategory.Id">@subcategory.Name</a></li>
                             }
                         </ul>
                     </div>

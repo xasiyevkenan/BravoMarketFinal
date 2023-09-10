@@ -1,0 +1,271 @@
+﻿@model ProductViewModel
+@{
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="icon" href="~/assets/images/icons/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Daxil ol</title>
+</head>
+
+<body>
+    @await Component.InvokeAsync("OnlineHeader")
+
+    <section class="products_wrapper mt-5">
+        <div class="second_container">
+            <div class="title d-flex justify-content-between">
+
+                <div class="product title">
+                    <h1 class="title">@Model.Category.Name</h1>
+                </div>
+
+                <div class="product_sorting  d-flex justify-content-between align-items-center">
+                    <div class="sorting_type price_sort me-3 ">
+                        <span>Qiymət</span>
+                    </div>
+
+                    <div class="sorting_type alphabet_sort">
+                        <span class="">Əlifba sırası ilə</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products_banner mt-4 d-flex  align-items-start">
+                <div class="left_side">
+                    <div style="padding-top:10px ;border-top: 1px solid #D6D5D4;" class="catalog_title">
+
+
+
+                        <h6 class="mb-4">
+                            <a style="text-decoration:none; color:black;"
+                               asp-controller="OnlineMarket" asp-action="Products" asp-route-id="@Model.ParentCategory.Id">@Model.ParentCategory.Name</a>
+                        </h6>
+                        <div class="catalog_subtitle mb-4">
+                            @foreach (var subcategoryy in Model.SubCategories)
+                            {
+                                <a asp-controller="OnlineMarket" asp-action="Products" asp-route-id="@subcategoryy.Id">
+                                    <p>@subcategoryy.Name <span></span> </p>
+                                </a>
+                            }
+                        </div>
+
+
+
+                        <div class="middle ">
+
+                            <div class="delete_filter mb-5 d-flex justify-content-between align-items-center">
+                                <div class="filter">
+                                    <span>Filtr</span>
+                                </div>
+                                <div class="delete">
+                                    <a href="">Sil</a>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="all_range">
+                                <p>Qiymət</p>
+                                <section class="range-slider">
+                                    <span class="rangeValues"></span>
+                                    <input value="0" min="0" max="2" step="0.1" type="range">
+                                    <input value="2" min="0" max="2" step="0.1" type="range">
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="right-side products">
+
+
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="single_product">
+                            <div class="product_image">
+                                <img src="~/assets/images/@product.ImageUrl" alt="">
+                            </div>
+
+                            <div class="product_all">
+                                <div class="product_name">
+                                    <h3>@product.Name</h3>
+                                </div>
+
+                                <div class="bottom_product d-flex justify-content-between align-items-end">
+                                    <div class="about_product">
+                                        <div class="product_price">
+                                            <p>₼ <span>@product.Price</span></p>
+                                        </div>
+
+                                        <div class="product_count">
+                                            <span>@product.Count əd</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="add_basket">
+                                        <a href="">
+                                            <i class="fa-solid fa-basket-shopping"></i>
+                                            <span>Səbətə</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="add_wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="second_container">
+            <div class="wrapper-inner">
+                <div class="footer-content">
+                    <div class="footer-top">
+                        <div class="row">
+                            <div class="footer-item col-lg-3 col-12 footer-item-logo text-lg-left r">
+                                <a href="/" class="logo bottom-logo">
+                                    <img src="/assets/images/icons/logo.svg">
+                                </a>
+                                <div class="footer-phone row">
+                                    <div class="col-lg-12 col-sm-6">
+                                        <a href="tel:*2266" class="phone-link">*2266</a>&nbsp;
+                                        <p style="font-size: 12px; color: #313131; font-weight: bold; margin-top: 5px;">
+                                            Müştəri Xidmətləri 9:00-dan 20:00-a
+                                            qədər
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6">
+                                        <button type="button" class="feedback-btn mt-2"
+                                                data-target="#feedbackModal">
+                                            Əlaqə
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-item col-lg-5 col-12 footer-item-menu-list text-lg-left  my-lg-0 my-4 py-lg-0 py-3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="footer-item-menu mb-sm-0 mb-3">
+                                            <div class="footer-item-title">
+                                                Alıcılara
+                                            </div>
+                                            <div class="navigation-box">
+
+                                                <ul class="navigation">
+
+                                                    <li class="navigation_item">
+                                                        <a href=""
+                                                           class="navigation-link">FAQ</a>
+                                                    </li>
+
+                                                    <li class="navigation_item">
+                                                        <a href=""
+                                                           class="navigation-link">
+                                                            Malların sifarişi və satış qaydası
+                                                            haqqında razılaşma
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="footer-item-menu">
+                                            <div class="footer-item-title">
+                                                Məlumat<br>
+                                            </div>
+                                            <div class="navigation-box">
+
+                                                <ul class="navigation">
+
+                                                    <li class="navigation_item">
+                                                        <a href=""
+                                                           class="navigation-link">Çatdırılma və ödəniş</a>
+                                                    </li>
+
+                                                    <li class="navigation_item">
+                                                        <a href="" class="navigation-link">
+                                                            Geri
+                                                            qaytarma şərtləri
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-item col-lg-4 col-12 pl-lg-0 footer-item-text-wrapper text-lg-left ">
+                                <div class="footer-item-text">
+                                </div>
+                                <div class="footer-item-pays">
+                                    <div class="pays-box">
+                                        <div class="pay-item">
+                                            <img src="/assets/images/payments/mastercard.png"
+                                                 alt="Банковская карта MasterCard" title="">
+                                        </div>
+                                        <div class="pay-item">
+                                            <img src="/assets/images/payments/maestro.png"
+                                                 alt="Банковская карта Maestro" title="">
+                                        </div>
+                                        <div class="pay-item">
+                                            <img src="/assets/images/payments/visa.png" alt="Банковская карта Visa"
+                                                 title="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="bx-composite-banner" style=" margin-top: 10px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="footer-item-copy">
+                            <div class="row align-items-center text-lg-left text-center">
+                                <div class="col-lg col-12">
+
+                                    <span>2023 ©</span> <span><b>Azerbaijan Supermarket LLC</b></span>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="~/assets/js/category.js"></script>
+    <script src="~/assets/js/onlinemarket.js"></script>
+    <script src="~/assets/js/range.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</body>
+
+</html>

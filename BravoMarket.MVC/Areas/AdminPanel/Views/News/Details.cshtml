@@ -1,0 +1,27 @@
+﻿@{
+    NewsViewModel viewModel = Model;
+    var ksmActivity = viewModel.KSMActivity;
+}
+
+<main>
+    <section class="headding">
+        <div class="container">
+            <div class="special_first">
+                <div>
+                    <h2>@ksmActivity.Title</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news_details_wrapper">
+        <div class="second_container">
+            <div class="news_details_image">
+                <img src="~/assets/images/@ksmActivity.ImageUrl" alt="">
+            </div>
+            <div class="news_details_text">
+                <p>@ksmActivity.Description</p>
+            </div>
+        </div>
+    </section>
+</main>

@@ -477,6 +477,9 @@ namespace BravoMarket.DAL.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
 
@@ -498,6 +501,29 @@ namespace BravoMarket.DAL.Migrations
                     b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("BravoMarket.DAL.Entities.CategoryProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CategoryProducts");
                 });
 
             modelBuilder.Entity("BravoMarket.DAL.Entities.ClientFAQ", b =>
@@ -1061,7 +1087,8 @@ namespace BravoMarket.DAL.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("NewsId")
                         .HasColumnType("int");
@@ -1309,7 +1336,8 @@ namespace BravoMarket.DAL.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("NewsId")
                         .HasColumnType("int");
@@ -1644,6 +1672,47 @@ namespace BravoMarket.DAL.Migrations
                     b.HasIndex("PreferenceId");
 
                     b.ToTable("PreferenceParagraphs");
+                });
+
+            modelBuilder.Entity("BravoMarket.DAL.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Count")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("BravoMarket.DAL.Entities.Promise", b =>
@@ -2417,6 +2486,25 @@ namespace BravoMarket.DAL.Migrations
                     b.Navigation("ParentCategory");
                 });
 
+            modelBuilder.Entity("BravoMarket.DAL.Entities.CategoryProduct", b =>
+                {
+                    b.HasOne("BravoMarket.DAL.Entities.Category", "Category")
+                        .WithMany("CategoryProducts")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BravoMarket.DAL.Entities.Product", "Product")
+                        .WithMany("CategoryProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("BravoMarket.DAL.Entities.ClientFAQ", b =>
                 {
                     b.HasOne("BravoMarket.DAL.Entities.Contact", "Contact")
@@ -2877,6 +2965,11 @@ namespace BravoMarket.DAL.Migrations
                     b.Navigation("Vacancies");
                 });
 
+            modelBuilder.Entity("BravoMarket.DAL.Entities.Category", b =>
+                {
+                    b.Navigation("CategoryProducts");
+                });
+
             modelBuilder.Entity("BravoMarket.DAL.Entities.ClientFAQ", b =>
                 {
                     b.Navigation("Questions");
@@ -2956,6 +3049,11 @@ namespace BravoMarket.DAL.Migrations
             modelBuilder.Entity("BravoMarket.DAL.Entities.Preference", b =>
                 {
                     b.Navigation("Paragraphs");
+                });
+
+            modelBuilder.Entity("BravoMarket.DAL.Entities.Product", b =>
+                {
+                    b.Navigation("CategoryProducts");
                 });
 
             modelBuilder.Entity("BravoMarket.DAL.Entities.Refusal", b =>

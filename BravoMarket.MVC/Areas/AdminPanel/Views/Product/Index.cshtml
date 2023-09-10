@@ -1,0 +1,52 @@
+﻿@model ProductViewModel
+
+<h1>Məhsullar</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Bütun Məhsullar</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Şəkil</th>
+                        <th>Ad</th>
+                        <th>Qiymət</th>
+                        <th>Say</th>
+                        <th>Kateqoriyalar</th>
+                        <th></th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td><img width="130" height="130" style="border-radius: 50%;" src="~/assets/images/@product.ImageUrl"></td>
+                            <td>@product.Name</td>
+                            <td>@product.Price</td>
+                            <td>@product.Count</td>
+                            <td>
+                                @foreach (var category in product.CategoryProducts)
+                                {
+                                    @category.Category.Name
+                                    @if (!category.Equals(@category.Category.Name.Last()))
+                                    {
+                                        <br/>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                            <td><a asp-action="Update" asp-route-id="@product.Id" class="btn btn-outline-warning">Update</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@{
+    NewsViewModel viewModel = Model;
+    var exibitions = viewModel.Exibitions;
+}
+
+<h1>KSM Xəbərləri</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Bütun KSM Xəbərləri</h4>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Şəkil</th>
+                        <th>Başlıq</th>
+                        <th>Açıqlama</th>
+                        <th></th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var news in exibitions)
+                    {
+                        <tr>
+                            <td><img width="130" height="130" style="border-radius:50%" src="~/assets/images/@news.ImageUrl"></td>
+                            <td>@news.Title</td>
+                            <td>@news.Description</td>
+                            <td><a asp asp-action="details" asp-route-id="@news.Id" class="btn btn-warning">Details</a></td>
+
+                            <td>
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@news.Id" />
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+
+                            <td><a asp-action="update" asp-route-id="@news.Id" class="btn btn-outline-warning">Update</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

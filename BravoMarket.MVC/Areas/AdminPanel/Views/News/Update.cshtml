@@ -1,0 +1,56 @@
+﻿@model ProductUpdateViewModel
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Məhsulu Düzəlt</h4>
+            <p class="card-description">Məhsullar</p>
+            <form asp-action="Update" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name">Adı</label>
+                    <input asp-for="Name" placeholder="Adı" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price">Qiymət</label>
+                    <input asp-for="Price" placeholder="Qiymət" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Count">Sayı</label>
+                    <input asp-for="Count" placeholder="Sayı" class="form-control" />
+                    <span asp-validation-for="Count" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Image">Şəkil</label>
+                    <input asp-for="Image" type="file" class="form-control-file" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RemovedCategoryIds">Kateqoriyaları Sil</label>
+                    <select asp-for="RemovedCategoryIds" asp-items="Model.RemovedCategories" class="form-control">
+                        <option value="">Seçin</option>
+                    </select>
+                    <span asp-validation-for="RemovedCategoryIds" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AddedCategoryIds">Kateqoriyaları Əlavə Edin</label>
+                    <select asp-for="AddedCategoryIds" asp-items="Model.AvailableCategories" class="form-control">
+                        <option value="">Seçin</option>
+                    </select>
+                    <span asp-validation-for="AddedCategoryIds" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Yenilə</button>
+                    <a asp-action="Index" class="btn btn-light">Ləğv Et</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

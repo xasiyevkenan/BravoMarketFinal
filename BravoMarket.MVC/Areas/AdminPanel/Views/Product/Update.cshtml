@@ -1,0 +1,62 @@
+﻿@model ProductUpdateViewModel
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Məhsulu Düzəlt</h4>
+            <p class="card-description">Məhsullar</p>
+            <form asp-action="Update" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name">Adı</label>
+                    <input asp-for="Name" class="form-control" placeholder="Adı..." />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price">Qiymət</label>
+                    <input asp-for="Price" class="form-control" placeholder="Qiymət..." />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Count">Sayı</label>
+                    <input asp-for="Count" class="form-control" placeholder="Sayı..." />
+                    <span asp-validation-for="Count" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AddedCategoryIds">Əlavə Kateqoriyalar</label>
+                    <select style="height:80px;" asp-for="AddedCategoryIds" class="form-control" multiple>
+                        @foreach (var category in Model.AvailableCategories)
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AddedCategoryIds" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RemovedCategoryIds">Silmək İstədiyiniz Kateqoriyalar</label>
+                    <select style="height:80px;" asp-for="RemovedCategoryIds" class="form-control" multiple>
+                        @foreach (var category in Model.RemovedCategories)
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="RemovedCategoryIds" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3" enctype="multipart/form-data">
+                    <label asp-for="Image">Şəkil</label>
+                    <input asp-for="Image" class="form-control" id="exampleInputUsername1" accept="image/*" placeholder="Şəkil...">
+                    <span asp-validation-for="Image"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mr-2">Yenilə</button>
+                    <a asp-action="Index" class="btn btn-light">Ləğv Et</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
