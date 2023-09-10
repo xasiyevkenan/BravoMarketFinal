@@ -1,10 +1,27 @@
-﻿@model List<Product>
-
-@foreach (var item in Model)
-{
-    <li class="list-group-item disabled">
-        <a>
-            @item.Name
-        </a>
-    </li>
+﻿@{
+    CategoryViewModel? viewModel = Model;
+    var products = viewModel.Products;
 }
+
+@if (products != null)
+{
+    @foreach (var item in products)
+    {
+        <li style="height:92px;" class="list-group-item list-group-item-success">
+            @if (item.CategoryProducts.Any())
+            {
+                var categoryId = item.CategoryProducts.Last().Category.Id;
+
+                <a class="text-black text-decoration-none " asp-controller="OnlineMarket" asp-action="Products" asp-route-id="@categoryId">
+                    <img style="width: 75px; border-radius: 124%;height: 75px;" src="~/assets/images/@item.ImageUrl">
+                    @item.Name
+                </a>
+            }
+            else
+            {
+                <span>@item.Name</span>
+            }
+        </li>
+    }
+}
+else { }

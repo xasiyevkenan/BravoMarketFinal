@@ -40,13 +40,15 @@
                 </div>
 
                 <div class="search_title">
-                    <form class="form_search" action="">
+                    <form class="form_search" id="form_search" action="">
                         <div class="all_form">
-                            <input id="searchedProducts" type="text" placeholder="Məhsulun adını yazmağa başlayın, məsələn, «Banan»">
+                            <input type="text" id="input_search" placeholder="Məhsulun adını yazmağa başlayın, məsələn, «Banan»">
                             <button type="submit"></button>
                         </div>
                     </form>
                 </div>
+
+
 
                 <div class="icon_boxes d-flex">
                     <div class="single_icon_box">
@@ -84,6 +86,9 @@
                     </div>
                 </div>
             </div>
+
+            <ul style="max-width: 775px; margin: 0 auto;position: absolute;left: 17%;top: auto;z-index: 212;" id="append_search" class="list-group text-lg-start">
+            </ul>
         </div>
     </div>
 </header>

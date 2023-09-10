@@ -75,13 +75,30 @@ namespace BravoMarket.MVC.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Search(string searchedProductsTitle)
+        public IActionResult Search(string? searchedProductsTitle)
         {
-            var searchedProducts = _dbContext.Products
-                .Where(x => x.Name.ToLower().Contains(searchedProductsTitle.ToLower()))
-                .ToList();
+            CategoryViewModel viewModel = new CategoryViewModel();
 
-            return PartialView("_SearchedProductsPartial", searchedProducts);
+            if (searchedProductsTitle != null)
+            {
+                searchedProductsTitle = searchedProductsTitle.ToLower();
+
+                var searchedProducts = _dbContext.Products
+                    .Include(x => x.CategoryProducts)
+                    .ThenInclude(x => x.Category)
+                    .Where(x => x.Name.ToLower().Contains(searchedProductsTitle))
+                    .ToList();
+
+                var categories = searchedProducts
+                       .Select(product => product.CategoryProducts.FirstOrDefault()?.Category)
+                       .Where(category => category != null)
+                       .ToList();
+
+                viewModel.Products = searchedProducts;
+                viewModel.Category = categories.FirstOrDefault();
+            }
+
+            return PartialView("_SearchedProductsPartial", viewModel);
         }
     }
 }
