@@ -1,0 +1,12 @@
+﻿@model VacancyViewModel
+
+@foreach (var vacancy in Model.Vacancies)
+{
+    <div class="single_vacancy">
+        <h3>@vacancy.Title</h3>
+        <footer>
+            <p>@vacancy.Adress</p>
+            <time>@vacancy.Time</time>
+        </footer>
+    </div>
+}

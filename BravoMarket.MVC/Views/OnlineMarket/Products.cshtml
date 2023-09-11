@@ -89,7 +89,6 @@
                 </div>
                 <div class="right-side products">
 
-
                     @foreach (var product in Model.Products)
                     {
                         <div class="single_product">
@@ -105,7 +104,7 @@
                                 <div class="bottom_product d-flex justify-content-between align-items-end">
                                     <div class="about_product">
                                         <div class="product_price">
-                                            <p>₼ <span>@product.Price</span></p>
+                                            <p>₼ <span class="product_price_value">@product.Price</span></p>
                                         </div>
 
                                         <div class="product_count">
@@ -262,6 +261,7 @@
     <script src="~/assets/js/category.js"></script>
     <script src="~/assets/js/onlinemarket.js"></script>
     <script src="~/assets/js/range.js"></script>
+    <script src="~/assets/js/product_sort.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="~/assets/js/script.js"></script>
 

@@ -8,15 +8,19 @@ namespace BravoMarket.MVC.Controllers
     public class VacancyController : Controller
     {
         private readonly AppDbContext _dbContext;
+        private readonly int _vacancyCount;
 
         public VacancyController(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+            _vacancyCount = _dbContext.Vacancies.Count();
         }
 
         public IActionResult Index()
         {
-            var vacancies = _dbContext.Vacancies.ToList();
+            ViewBag.VacancyCount = _vacancyCount;
+
+            var vacancies = _dbContext.Vacancies.Take(3).ToList();
 
             var viewModel = new VacancyViewModel
             {
@@ -24,6 +28,18 @@ namespace BravoMarket.MVC.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public IActionResult LoadVacancies(int skip)
+        {
+            var vacancies = _dbContext.Vacancies?.Skip(skip).Take(3).ToList();
+
+            var viewModel = new VacancyViewModel
+            {
+                Vacancies = vacancies
+            };
+
+            return PartialView("_VacancyPartial", viewModel);
         }
     }
 }

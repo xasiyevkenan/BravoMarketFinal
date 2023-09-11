@@ -1,4 +1,5 @@
 ﻿using BravoMarket.DAL.DataContext;
+using BravoMarket.DAL.Entities;
 using BravoMarket.MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
